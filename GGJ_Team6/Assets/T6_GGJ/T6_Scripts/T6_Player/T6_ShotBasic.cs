@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class T6_ShotType : MonoBehaviour
+public class T6_ShotBasic : MonoBehaviour
 {
     [SerializeField] private float projectileSpeed;
 

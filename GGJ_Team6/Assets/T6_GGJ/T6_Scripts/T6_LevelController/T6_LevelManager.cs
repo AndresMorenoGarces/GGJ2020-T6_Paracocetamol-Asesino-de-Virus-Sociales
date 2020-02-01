@@ -29,7 +29,7 @@ public class T6_LevelManager : MonoBehaviour
         {
             randomEnemyQuantity = Random.Range(-4, 5);
             enemyClone = Instantiate(enemy[RespawnType()], RespawnPosition(), Quaternion.identity);
-            enemyClone.name = "enemyClone";
+            enemyClone.name = "Enemy Clone";
             enemyClone.transform.SetParent(enemyVoidObject.transform);
         }
 
