@@ -10,3 +10,4 @@ public enum PlayerStats
 {
     Shoot, Iddle, Die, isMoving
 }
+

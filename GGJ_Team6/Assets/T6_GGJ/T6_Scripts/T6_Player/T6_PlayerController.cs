@@ -42,8 +42,7 @@ public class T6_PlayerController : MonoBehaviour
         {
             playerStats = PlayerStats.Iddle;
         }
-        Debug.Log(moveY + "Hello !");
-        Debug.Log(playerStats);
+
         if (Time.time >= nextAttackTime)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -52,7 +51,6 @@ public class T6_PlayerController : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
-
     }
 
     private void Shot()
