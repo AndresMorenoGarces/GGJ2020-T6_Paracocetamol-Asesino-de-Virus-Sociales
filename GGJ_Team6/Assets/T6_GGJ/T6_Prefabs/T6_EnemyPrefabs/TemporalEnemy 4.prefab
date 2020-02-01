@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 7403289204960321720}
   - component: {fileID: 1367088336}
   m_Layer: 0
-  m_Name: TemporalEnemy
-  m_TagString: Untagged
+  m_Name: TemporalEnemy 4
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,3 +141,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49974ca1b5789f247bd0eba3fb8fc6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gettingDamage: 0

@@ -11,6 +11,8 @@ public class T6_ShotManager : MonoBehaviour
     private float attackRate = 2f;
     private float nextAttackTime = 0f;
 
+    private int shotCap = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,16 +23,29 @@ public class T6_ShotManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Time.time >= nextAttackTime)
-        //{
+        if(shotCap == 10)
+        {
+            shotCap = 0;
+            shotType = ShotType.Basic;
+        }
+        if (Time.time >= nextAttackTime)
+        {
             if (Input.GetButtonDown("Fire1"))
-                ShotBasic();
-
-            if (Input.GetButtonDown("Fire2"))
-                ShotTriple();
-
-           // nextAttackTime = Time.time + 1f / attackRate;
-        //}
+            {
+                switch (shotType)
+                {
+                    case ShotType.Basic:
+                        ShotBasic();
+                        break;
+                    case ShotType.Triple:
+                        ShotTriple();
+                        break;
+                    default:
+                        break;
+                }
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+        }
     }
 
     void ShotBasic()
@@ -41,9 +56,16 @@ public class T6_ShotManager : MonoBehaviour
 
     void ShotTriple()
     {
-        Instantiate(projectile[(int)ShotType.Triple], new Vector2(transform.position.x - 6f , transform.position.y), Quaternion.Euler(new Vector3(0, 0, 60f)));
-        Instantiate(projectile[(int)ShotType.Triple], new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-        Instantiate(projectile[(int)ShotType.Triple], new Vector2(transform.position.x - 6f, transform.position.y), Quaternion.Euler(new Vector3(0, 0, -60f)));
+        Instantiate(projectile[(int)ShotType.Triple], new Vector2(transform.position.x + 1f , transform.position.y), Quaternion.Euler(new Vector3(0, 0, 60f)));
+        Instantiate(projectile[(int)ShotType.Triple], new Vector2(transform.position.x + 1f, transform.position.y), Quaternion.identity);
+        Instantiate(projectile[(int)ShotType.Triple], new Vector2(transform.position.x + 1f, transform.position.y), Quaternion.Euler(new Vector3(0, 0, -60f)));
+        shotCap++;
+        Debug.Log(shotCap);
+    }
+
+    public void ChangeShot()
+    {
+        shotType = ShotType.Triple;
     }
 
     //void ChangedShot(int type)
@@ -65,4 +87,5 @@ public class T6_ShotManager : MonoBehaviour
     //        }
     //    }
     //}
+
 }

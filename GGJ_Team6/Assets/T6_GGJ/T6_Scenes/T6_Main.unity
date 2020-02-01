@@ -690,6 +690,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TemporalEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7884356033061300307, guid: 108ddb88731876040a43b59fa686b34f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 108ddb88731876040a43b59fa686b34f, type: 3}
 --- !u!1 &1936867777
