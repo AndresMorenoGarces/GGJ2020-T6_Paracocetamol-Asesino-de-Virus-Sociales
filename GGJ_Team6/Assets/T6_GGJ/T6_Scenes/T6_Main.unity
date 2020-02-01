@@ -667,5 +667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d068f4a0b299a254480c8a5e3142bd2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectile: {fileID: 6323402066061704743, guid: 8ec89302ea265eb4f8fc369302df867a,
+    type: 3}
   speed: 4
-  moveY: {x: 0, y: 0}

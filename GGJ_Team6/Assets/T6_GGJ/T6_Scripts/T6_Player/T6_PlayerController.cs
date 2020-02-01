@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class T6_PlayerController : MonoBehaviour
 {
+    public GameObject projectile;
     public int speed;
-    public Vector2 moveY;
 
+    private float attackRate = 2f;
+    private float nextAttackTime = 0f;
+    private Vector2 moveY;
     private int life = 100;
     private int damage;
 
@@ -27,9 +30,11 @@ public class T6_PlayerController : MonoBehaviour
 
     void Update()
     {
+
         Vector2 inputY = new Vector2(0, Input.GetAxisRaw("Vertical"));
         moveY = inputY.normalized * speed;
-        if(moveY != new Vector2(0,0))
+
+        if (moveY != new Vector2(0,0))
         {
             playerStats = PlayerStats.isMoving;
         }
@@ -39,6 +44,20 @@ public class T6_PlayerController : MonoBehaviour
         }
         Debug.Log(moveY + "Hello !");
         Debug.Log(playerStats);
+        if (Time.time >= nextAttackTime)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Shot();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+        }
+
+    }
+
+    private void Shot()
+    {
+        Instantiate(projectile, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
     }
 
     void FixedUpdate()
