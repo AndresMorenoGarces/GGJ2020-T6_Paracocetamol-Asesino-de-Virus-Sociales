@@ -2,10 +2,11 @@
 {
     Run,
     Die,
-    Attacks
+    Attacks,
+    TakeDamage
 }
 
 public enum PlayerStats
 {
-    Shoot, Iddle, Die,  
+    Shoot, Iddle, Die, isMoving
 }

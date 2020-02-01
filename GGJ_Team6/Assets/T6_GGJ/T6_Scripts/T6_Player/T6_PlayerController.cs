@@ -16,24 +16,29 @@ public class T6_PlayerController : MonoBehaviour
 
     void Awake()
     {
+
+    }
+
+    void Start()
+    {
         rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Vector2 inputY = new Vector2(0, Input.GetAxisRaw("Vertical"));
         moveY = inputY.normalized * speed;
+        if(moveY != new Vector2(0,0))
+        {
+            playerStats = PlayerStats.isMoving;
+        }
+        else
+        {
+            playerStats = PlayerStats.Iddle;
+        }
         Debug.Log(moveY + "Hello !");
-
+        Debug.Log(playerStats);
     }
 
     void FixedUpdate()

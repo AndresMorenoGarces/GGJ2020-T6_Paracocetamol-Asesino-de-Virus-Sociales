@@ -23,6 +23,9 @@ public class T6_Enemy1 : T6_EnemyBehavior
                 break;
             case EnemyState.Attacks:
                 break;
+            case EnemyState.TakeDamage:
+                TakeDamage();
+                break;
             default:
                 break;
         }
@@ -33,6 +36,11 @@ public class T6_Enemy1 : T6_EnemyBehavior
         if(collision.tag == "Goal")
         {
             currState = EnemyState.Die;
+        }
+
+        if(collision.tag == "Projectile")
+        {
+            currState = EnemyState.TakeDamage;
         }
     }
 }

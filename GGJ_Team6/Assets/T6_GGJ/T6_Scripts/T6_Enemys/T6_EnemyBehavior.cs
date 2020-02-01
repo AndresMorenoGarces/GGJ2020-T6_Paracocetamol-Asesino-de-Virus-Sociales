@@ -12,19 +12,24 @@ public class T6_EnemyBehavior : MonoBehaviour
         
     }
 
+    protected void StartHealth(int aditionalHealth)
+    {
+        currentHealth = baseHealth;
+        currentHealth = currentHealth + aditionalHealth;
+    }
+
     protected void EnemyMove(float speed)
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
 
+    protected void TakeDamage()
+    {
+        currentHealth -= 10;
+    }
+
     protected void Die()
     {
         Destroy(gameObject);
-    }
-
-    protected void StartHealth(int aditionalHealth)
-    {
-        currentHealth = baseHealth;
-        currentHealth = currentHealth + aditionalHealth;
     }
 }
