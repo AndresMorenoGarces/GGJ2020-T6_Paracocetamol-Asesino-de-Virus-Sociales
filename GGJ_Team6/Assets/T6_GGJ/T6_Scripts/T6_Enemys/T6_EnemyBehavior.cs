@@ -7,9 +7,13 @@ public class T6_EnemyBehavior : MonoBehaviour
     private int baseHealth = 100;
     private int currentHealth;
 
-    private void Start()
+    private T6_GameManager Manager;
+
+    public bool gettingDamage = false;
+
+    protected void GetManager()
     {
-        
+        Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<T6_GameManager>();
     }
 
     protected void StartHealth(int aditionalHealth)
@@ -23,9 +27,22 @@ public class T6_EnemyBehavior : MonoBehaviour
         transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
 
-    protected void TakeDamage()
+    protected void TakeDamage(int projectileDamage)
     {
-        currentHealth -= 10;
+        if(currentHealth > 0)
+        {
+            currentHealth -= projectileDamage;
+        }
+        else
+        {
+            Die();
+        }
+    }
+
+    public void MakeDamage(int damage)
+    {
+        Manager.RecibeDamage(damage);
+        Die();
     }
 
     protected void Die()

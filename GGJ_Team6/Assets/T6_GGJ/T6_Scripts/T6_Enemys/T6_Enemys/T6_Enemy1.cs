@@ -9,6 +9,7 @@ public class T6_Enemy1 : T6_EnemyBehavior
     void Start()
     {
         StartHealth(10);
+        GetManager();
     }
 
     void Update()
@@ -21,11 +22,6 @@ public class T6_Enemy1 : T6_EnemyBehavior
             case EnemyState.Die:
                 Die();
                 break;
-            case EnemyState.Attacks:
-                break;
-            case EnemyState.TakeDamage:
-                TakeDamage();
-                break;
             default:
                 break;
         }
@@ -35,12 +31,12 @@ public class T6_Enemy1 : T6_EnemyBehavior
     {
         if(collision.tag == "Goal")
         {
-            currState = EnemyState.Die;
+            MakeDamage(10);
         }
 
         if(collision.tag == "Projectile")
         {
-            currState = EnemyState.TakeDamage;
+            TakeDamage(10);
         }
     }
 }
