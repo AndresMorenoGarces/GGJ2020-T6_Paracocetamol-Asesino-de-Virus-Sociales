@@ -829,6 +829,11 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 61324917406757286, guid: 353e3b520dbb4eb47b7bd84da1dd353b,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4986896918166786918, guid: 353e3b520dbb4eb47b7bd84da1dd353b,
         type: 3}
       propertyPath: m_Name
@@ -930,3 +935,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile:
   - {fileID: 6323402066061704743, guid: 8ec89302ea265eb4f8fc369302df867a, type: 3}
+  - {fileID: 9153731772696982695, guid: df6894e8f0daa8f438901c10a39a9d30, type: 3}
