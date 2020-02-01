@@ -4,53 +4,38 @@ using UnityEngine;
 
 public class T6_LevelManager : MonoBehaviour
 {
-    private int enemysQuantity;
-    private int enemiesDead;
     private int enemiesSpawned;
     private int randomEnemyQuantity;
     private int enemyType;
-
     private int currentSurge = 0;
     private int wavesUpgrade = 0;
     private int enemyMaxUpgrade = 0;
-    private int rangeRespawnPosition;
 
     public GameObject[] enemy;
     public Transform enemyVoidObject;
     private GameObject enemyClone;
-    private GameObject enemyOldClone;
 
     private Vector2 respawnPosition;
     private bool isRespawnTime = true;
-    private bool isFirstRespawn = true;
 
     private void RespawnEnemies()
     {
         for (int i = 0; i < RespawnQuantity(); i++)
         {
-            enemyOldClone = enemyClone;
             randomEnemyQuantity = Random.Range(-4, 5);
-            enemyClone = Instantiate(enemy[RespawnType()], RespawnPosition(false), Quaternion.identity);
-
-            if (enemyClone.transform.position == enemyOldClone.transform.position && isFirstRespawn == false)
-                enemyClone.transform.position = RespawnPosition(true);
-
+            enemyClone = Instantiate(enemy[RespawnType()], RespawnPosition(), Quaternion.identity);
             enemyClone.name = "Enemy Clone";
             enemyClone.transform.SetParent(enemyVoidObject.transform);
         }
 
-        Vector2 RespawnPosition(bool isOverAClone)
+        Vector2 RespawnPosition()
         {
-            if (isOverAClone)
-                respawnPosition.x = 8;
-            else
-                respawnPosition.x = 10;
+            respawnPosition.x = 10;
 
             if (randomEnemyQuantity % 2 == 0)
                 respawnPosition.y = randomEnemyQuantity;
             else
                 respawnPosition.y = randomEnemyQuantity - 1;
-            isFirstRespawn = false;
             return respawnPosition;
         }
         int RespawnQuantity()
@@ -78,7 +63,6 @@ public class T6_LevelManager : MonoBehaviour
                 if (wavesUpgrade < 10)
                     wavesUpgrade++;
             }
-
             isRespawnTime = true;
         }
     }
