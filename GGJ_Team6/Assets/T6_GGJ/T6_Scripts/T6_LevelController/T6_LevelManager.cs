@@ -28,9 +28,11 @@ public class T6_LevelManager : MonoBehaviour
     {
         for (int i = 0; i < RespawnQuantity(); i++)
         {
+            enemyOldClone = enemyClone;
             randomEnemyQuantity = Random.Range(-4, 5);
             enemyClone = Instantiate(enemy[RespawnType()], RespawnPosition(false), Quaternion.identity);
-            if (/*enemyClone.transform.position == enemyOldClone.transform.position &&*/ isFirstRespawn == false)
+
+            if (enemyClone.transform.position == enemyOldClone.transform.position && isFirstRespawn == false)
                 enemyClone.transform.position = RespawnPosition(true);
 
             enemyClone.name = "Enemy Clone";
@@ -48,6 +50,7 @@ public class T6_LevelManager : MonoBehaviour
                 respawnPosition.y = randomEnemyQuantity;
             else
                 respawnPosition.y = randomEnemyQuantity - 1;
+            isFirstRespawn = false;
             return respawnPosition;
         }
         int RespawnQuantity()
@@ -60,9 +63,7 @@ public class T6_LevelManager : MonoBehaviour
             enemyType = Random.Range(0, 1 + enemyMaxUpgrade);
             return enemyType;
         }
-        enemyOldClone = enemyClone;
         isRespawnTime = false;
-        isFirstRespawn = false;
     }
 
     private void NewSurge()
