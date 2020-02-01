@@ -11,3 +11,8 @@ public enum PlayerStats
     Shoot, Iddle, Die, isMoving
 }
 
+public enum ShotType
+{
+    Basic,
+    Triple
+}
