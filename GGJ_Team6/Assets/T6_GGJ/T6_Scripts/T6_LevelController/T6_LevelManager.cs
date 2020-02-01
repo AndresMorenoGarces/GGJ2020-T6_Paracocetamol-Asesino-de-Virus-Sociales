@@ -18,6 +18,7 @@ public class T6_LevelManager : MonoBehaviour
     public GameObject[] enemy;
     public Transform enemyVoidObject;
     private GameObject enemyClone;
+    private GameObject enemyOldClone;
 
     private Vector2 respawnPosition;
     private bool isRespawnTime = true;
@@ -28,17 +29,25 @@ public class T6_LevelManager : MonoBehaviour
         for (int i = 0; i < RespawnQuantity(); i++)
         {
             randomEnemyQuantity = Random.Range(-4, 5);
-            enemyClone = Instantiate(enemy[RespawnType()], RespawnPosition(), Quaternion.identity);
+            enemyClone = Instantiate(enemy[RespawnType()], RespawnPosition(false), Quaternion.identity);
+            if (/*enemyClone.transform.position == enemyOldClone.transform.position &&*/ isFirstRespawn == false)
+                enemyClone.transform.position = RespawnPosition(true);
+
             enemyClone.name = "Enemy Clone";
             enemyClone.transform.SetParent(enemyVoidObject.transform);
         }
 
-        Vector2 RespawnPosition()
+        Vector2 RespawnPosition(bool isOverAClone)
         {
-            if (randomEnemyQuantity % 2 == 0)
-                respawnPosition = new Vector2(10, randomEnemyQuantity);
+            if (isOverAClone)
+                respawnPosition.x = 8;
             else
-                respawnPosition = new Vector2(10, randomEnemyQuantity - 1);
+                respawnPosition.x = 10;
+
+            if (randomEnemyQuantity % 2 == 0)
+                respawnPosition.y = randomEnemyQuantity;
+            else
+                respawnPosition.y = randomEnemyQuantity - 1;
             return respawnPosition;
         }
         int RespawnQuantity()
@@ -51,6 +60,7 @@ public class T6_LevelManager : MonoBehaviour
             enemyType = Random.Range(0, 1 + enemyMaxUpgrade);
             return enemyType;
         }
+        enemyOldClone = enemyClone;
         isRespawnTime = false;
         isFirstRespawn = false;
     }
