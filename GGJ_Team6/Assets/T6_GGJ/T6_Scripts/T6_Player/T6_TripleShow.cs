@@ -1,18 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class T6_TripleShow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Range(2f, 8f)]public float speedTriple;
 
-    // Update is called once per frame
     void Update()
     {
+        if (transform.rotation.z == 0)
+            transform.position += Vector3.right * Time.deltaTime * speedTriple;
+        else if (transform.rotation.z < 0)
+            transform.position += new Vector3(1f, -.1f) * Time.deltaTime * speedTriple;
+        else
+            transform.position += new Vector3(1f, .1f) * Time.deltaTime * speedTriple;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Goal")
+            Destroy(gameObject);
         
     }
 }

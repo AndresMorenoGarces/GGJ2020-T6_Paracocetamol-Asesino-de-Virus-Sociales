@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class T6_PlayerController : MonoBehaviour
 {
-    public GameObject projectile;
     public int speed;
 
-    private float attackRate = 2f;
-    private float nextAttackTime = 0f;
     private Vector2 moveY;
     private int life = 100;
     private int damage;
@@ -43,19 +40,7 @@ public class T6_PlayerController : MonoBehaviour
             playerStats = PlayerStats.Iddle;
         }
 
-        if (Time.time >= nextAttackTime)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Shot();
-                nextAttackTime = Time.time + 1f / attackRate;
-            }
-        }
-    }
-
-    private void Shot()
-    {
-        Instantiate(projectile, transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+      
     }
 
     void FixedUpdate()

@@ -13,6 +13,6 @@ public enum PlayerStats
 
 public enum ShotType
 {
-    Basic,
-    Triple
+    Basic = 0,
+    Triple = 1
 }
