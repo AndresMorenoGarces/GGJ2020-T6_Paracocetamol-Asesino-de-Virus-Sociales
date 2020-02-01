@@ -13,7 +13,6 @@ public class T6_LevelManager : MonoBehaviour
     private int currentSurge = 0;
     private int wavesUpgrade = 0;
     private int enemyMaxUpgrade = 0;
-    private int enemyMinUpgrade = 0;
     private int rangeRespawnPosition;
 
     public GameObject[] enemy;
@@ -49,7 +48,7 @@ public class T6_LevelManager : MonoBehaviour
         }
         int RespawnType()
         {
-            enemyType = Random.Range(0 + enemyMinUpgrade, 1 + enemyMaxUpgrade);
+            enemyType = Random.Range(0, 1 + enemyMaxUpgrade);
             return enemyType;
         }
         isRespawnTime = false;
@@ -67,8 +66,6 @@ public class T6_LevelManager : MonoBehaviour
                     enemyMaxUpgrade++;
                 if (wavesUpgrade < 10)
                     wavesUpgrade++;
-                if (currentSurge % 10 == 0 && enemyMinUpgrade < enemyMaxUpgrade - 1)
-                    enemyMinUpgrade++;
             }
 
             isRespawnTime = true;
