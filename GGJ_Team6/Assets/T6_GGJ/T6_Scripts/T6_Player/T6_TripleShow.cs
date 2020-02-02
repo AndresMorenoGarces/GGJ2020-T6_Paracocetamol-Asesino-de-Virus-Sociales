@@ -17,7 +17,13 @@ public class T6_TripleShow : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Goal")
+        {
             Destroy(gameObject);
-        
+        }
+
+        if(collision.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }

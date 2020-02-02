@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class T6_Enemy1 : T6_EnemyBehavior
+public class T6_Enemy3 : T6_EnemyBehavior
 {
     private EnemyState currState = EnemyState.Run;
 
     void Start()
     {
-        StartHealth(0);
+        StartHealth(40);
         GetManager();
     }
 
@@ -17,7 +17,7 @@ public class T6_Enemy1 : T6_EnemyBehavior
         switch (currState)
         {
             case EnemyState.Run:
-                EnemyMove(5f);
+                EnemyMove(2f);
                 break;
             case EnemyState.Die:
                 Die();
@@ -29,12 +29,12 @@ public class T6_Enemy1 : T6_EnemyBehavior
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Goal")
+        if (collision.tag == "Goal")
         {
             MakeDamage(10);
         }
 
-        if(collision.tag == "Projectile")
+        if (collision.tag == "Projectile")
         {
             TakeDamage(20);
         }

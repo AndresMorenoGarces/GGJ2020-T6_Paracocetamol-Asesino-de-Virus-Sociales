@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class T6_EnemyBehavior : MonoBehaviour
 {
-    private int baseHealth = 100;
+    private int baseHealth = 40;
     private int currentHealth;
 
     private T6_GameManager Manager;

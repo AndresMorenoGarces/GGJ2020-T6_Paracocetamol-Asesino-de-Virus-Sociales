@@ -8,7 +8,7 @@ public class T6_ShotManager : MonoBehaviour
 
     ShotType shotType = ShotType.Basic;
     private int typeOfShot;
-    private float attackRate = 4f;
+    private float attackRate = 2.2f;
     private float nextAttackTime = 0f;
 
     private Animator anim;
@@ -81,7 +81,7 @@ public class T6_ShotManager : MonoBehaviour
 
     void ShotBasic()
     {
-        Instantiate(ammo[(int)ShotType.Basic], transform.position, Quaternion.identity);
+        Instantiate(ammo[(int)ShotType.Basic], transform.position - new Vector3(0,0.75f,0), Quaternion.identity);
     }
 
     void ShotTriple()

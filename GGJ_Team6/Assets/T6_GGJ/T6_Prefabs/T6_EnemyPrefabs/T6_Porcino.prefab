@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4243522125627994844}
   - component: {fileID: 6649302797443865353}
   - component: {fileID: 7403289204960321720}
-  - component: {fileID: 1367088336}
   - component: {fileID: 1727102466}
+  - component: {fileID: 114115116190070424}
   m_Layer: 0
   m_Name: T6_Porcino
   m_TagString: Enemy
@@ -107,7 +107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!50 &7403289204960321720
 Rigidbody2D:
@@ -130,19 +130,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1367088336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7884356033061300307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49974ca1b5789f247bd0eba3fb8fc6bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gettingDamage: 0
 --- !u!95 &1727102466
 Animator:
   serializedVersion: 3
@@ -162,3 +149,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114115116190070424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7884356033061300307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0dab0ef25c2be4bb54328fb297abc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gettingDamage: 0

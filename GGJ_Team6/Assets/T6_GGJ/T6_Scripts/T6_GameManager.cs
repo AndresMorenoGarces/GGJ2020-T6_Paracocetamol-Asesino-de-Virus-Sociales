@@ -23,6 +23,6 @@ public class T6_GameManager : MonoBehaviour
     public void RecibeDamage(int damage)
     {
         life -= damage;
-        //Debug.Log(life);
+        Debug.Log(life);
     }
 }
