@@ -8,6 +8,7 @@ public class T6_PlayerController : MonoBehaviour
     private int life = 100;
     private int damage;
     private GameObject shootPlace;
+    private GameObject granadePlace;
 
     bool upWall;
     bool downWall;
@@ -21,11 +22,13 @@ public class T6_PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         shotChange = GetComponent<T6_ShotManager>();
         shootPlace = transform.GetChild(1).gameObject;
+        granadePlace = transform.GetChild(2).gameObject;
     }
 
     private void Start()
     {
-        //shootPlace.SetActive(false);
+        shootPlace.SetActive(false);
+        granadePlace.SetActive(false);
     }
 
     void Update()
@@ -79,6 +82,16 @@ public class T6_PlayerController : MonoBehaviour
     public void disableShootPlace()
     {
         shootPlace.SetActive(false);
+    }
+
+    public void activeGranadePlace()
+    {
+        granadePlace.SetActive(true);
+    }
+
+    public void disableGranadePlace()
+    {
+        granadePlace.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

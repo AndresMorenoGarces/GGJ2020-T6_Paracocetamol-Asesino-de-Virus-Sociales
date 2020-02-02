@@ -65,6 +65,7 @@ public class T6_ShotManager : MonoBehaviour
                 {
                     anim.SetBool("granade", true);
                     shotType = ShotType.Granade;
+                    player.activeGranadePlace();
                     ShotGranade();
                     AttackTime();
                     shotType = ShotType.Basic;
@@ -72,6 +73,7 @@ public class T6_ShotManager : MonoBehaviour
                 else
                 {
                     anim.SetBool("granade", false);
+                    player.disableGranadePlace();
                 }
             }
         }
@@ -102,6 +104,8 @@ public class T6_ShotManager : MonoBehaviour
         if (countain == 5)
         {
             canShotGranade = false;
+            anim.SetBool("granade", false);
+            player.disableGranadePlace();
             StartCoroutine(ReloadGranades());
         }
     }
