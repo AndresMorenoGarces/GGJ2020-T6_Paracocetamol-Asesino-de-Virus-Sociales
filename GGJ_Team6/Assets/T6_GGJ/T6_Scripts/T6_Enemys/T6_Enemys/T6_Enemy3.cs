@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class T6_Enemy3 : T6_EnemyBehavior
 {
+    public AudioClip enemySound3;
+
     private EnemyState currState = EnemyState.Run;
 
     void Start()
     {
         StartHealth(40);
         GetManager();
+        T6_AudioManager.am.Play(enemySound3);
     }
 
     void Update()

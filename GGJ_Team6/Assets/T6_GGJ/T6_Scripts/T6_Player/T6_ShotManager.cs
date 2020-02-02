@@ -5,7 +5,7 @@ using UnityEngine;
 public class T6_ShotManager : MonoBehaviour
 {
     public GameObject[] ammo;
-    public AudioClip[] shotAudio;
+    public AudioClip[] shotsAudio;
 
     ShotType shotType = ShotType.Basic;
     private int typeOfShot;
@@ -40,7 +40,9 @@ public class T6_ShotManager : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 anim.SetBool("isShooting", true);
-                // AudioSource.PlayClipAtPoint(damage, Camera.main.transform.position, 1);
+                //T6_AudioManager.am.RandomSoundEffect(shotsAudio);
+                T6_AudioManager.am.Play(shotsAudio[0]);
+               // AudioSource.PlayClipAtPoint(shotAudio[0], Camera.main.transform.position, 1);
                 switch (shotType)
                 {
                     case ShotType.Basic:
@@ -66,6 +68,9 @@ public class T6_ShotManager : MonoBehaviour
                 if (Input.GetButtonDown("Fire2"))
                 {
                     anim.SetBool("granade", true);
+                    // T6_AudioManager.am.RandomSoundEffect(shotsAudio);
+                    T6_AudioManager.am.Play(shotsAudio[1]);
+                    //AudioSource.PlayClipAtPoint(shotAudio[1], Camera.main.transform.position, 2);
                     shotType = ShotType.Granade;
                     player.activeGranadePlace();
                     ShotGranade();

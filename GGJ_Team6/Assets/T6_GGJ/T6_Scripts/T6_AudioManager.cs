@@ -6,7 +6,11 @@ public class T6_AudioManager : MonoBehaviour
 {
     public static T6_AudioManager am;
 
-    public AudioClip hit;
+    public AudioSource musicSource;
+    public AudioSource effectsSource;
+
+    public float lowPitchRange = .95f;
+    public float highPitchRange = 1.05f;
 
     private void Awake()
     {
@@ -18,13 +22,33 @@ public class T6_AudioManager : MonoBehaviour
 
     void Start()
     {
-        AudioSource.PlayClipAtPoint(hit, Camera.main.transform.position, 1);
+        
     }
 
     void Update()
     {
-        
+
     }
 
+    public void Play(AudioClip clip)
+    {
+        effectsSource.clip = clip;
+        effectsSource.Play();
+    }
 
+    public void PlayMusic(AudioClip clip)
+    {
+        musicSource.clip = clip;
+        musicSource.Play();
+    }
+
+   // public void RandomSoundEffect(params AudioClip[] clips)
+   // {
+       // int randomIndex = Random.Range(0, clips.Length);
+      //  float randomPitch = Random.Range(lowPitchRange, highPitchRange);
+
+       // effectsSource.pitch = randomPitch;
+      //  effectsSource.clip = clips[randomIndex];
+     //   effectsSource.Play();
+   // }
 }
