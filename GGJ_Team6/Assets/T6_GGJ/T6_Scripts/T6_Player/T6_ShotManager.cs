@@ -5,6 +5,7 @@ using UnityEngine;
 public class T6_ShotManager : MonoBehaviour
 {
     public GameObject[] ammo;
+    public AudioClip[] shotAudio;
 
     ShotType shotType = ShotType.Basic;
     private int typeOfShot;
