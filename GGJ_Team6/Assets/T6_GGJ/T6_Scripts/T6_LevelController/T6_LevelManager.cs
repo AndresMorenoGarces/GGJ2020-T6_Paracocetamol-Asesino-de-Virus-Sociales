@@ -52,7 +52,7 @@ public class T6_LevelManager : MonoBehaviour
             currentSurge++;
             if (currentSurge % 5 == 0)
             {
-                if (enemyMaxUpgrade < 3)
+                if (enemyMaxUpgrade < 4)
                     enemyMaxUpgrade++;
                 if (wavesUpgrade < 10)
                     wavesUpgrade++;

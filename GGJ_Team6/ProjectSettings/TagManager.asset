@@ -10,6 +10,7 @@ TagManager:
   - UpWall
   - DownWall
   - Projectile
+  - Expansion
   layers:
   - Default
   - TransparentFX

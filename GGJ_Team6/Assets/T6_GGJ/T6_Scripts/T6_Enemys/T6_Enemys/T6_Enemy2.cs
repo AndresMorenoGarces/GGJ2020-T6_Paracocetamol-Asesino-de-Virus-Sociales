@@ -38,5 +38,10 @@ public class T6_Enemy2 : T6_EnemyBehavior
         {
             TakeDamage(20);
         }
+
+        if (collision.tag == "Expansion")
+        {
+            TakeDamage(50);
+        }
     }
 }

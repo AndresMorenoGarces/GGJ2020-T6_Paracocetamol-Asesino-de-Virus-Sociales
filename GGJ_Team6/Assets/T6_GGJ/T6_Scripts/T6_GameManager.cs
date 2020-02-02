@@ -18,6 +18,7 @@ public class T6_GameManager : MonoBehaviour
         UI = GetComponent<T6_UIManager>();
         life = 100;
     }
+
     void Start()
     {
 

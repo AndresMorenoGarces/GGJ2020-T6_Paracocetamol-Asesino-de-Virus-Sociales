@@ -6,37 +6,38 @@ public class T6_ShotGranada : MonoBehaviour
 {
     public float explotionTime;
 
-    float thrust = 400f;
+    float thrust = 350f;
     Rigidbody2D rb2D;
     CircleCollider2D col2D;
+
+    private Animator anim;
 
     void Awake()
     {
         col2D = transform.GetChild(0).GetComponent<CircleCollider2D>();
         col2D.enabled = false;
+        rb2D = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        Direction();
         StartCoroutine("Destroy");
     }
 
-    void Update()
+    private void Direction()
     {
-       
-    }
-
-    void FixedUpdate()
-    {
-         rb2D.AddForce(Vector2.one * thrust);
+        rb2D.AddForce(Vector2.one * thrust);
     }
 
     IEnumerator Destroy()
     {
         yield return new WaitForSeconds(explotionTime);
         col2D.enabled = true;
-        yield return new WaitForSeconds(1.5f);
+        anim.SetTrigger("effect");
+        Destroy(rb2D);
+        yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
     }
 }
