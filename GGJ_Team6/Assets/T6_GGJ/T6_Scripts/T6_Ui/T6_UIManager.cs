@@ -11,6 +11,7 @@ public class T6_UIManager : MonoBehaviour
     public TextMeshPro waveTextPro;
     public TextMeshPro healthTextPro;
     public TextMeshPro scoreTextPro;
+    public TextMeshPro surgeTextPro;
     public TextMeshPro lastScoreTextP;
     public TextMeshPro bestScoreTextP;
     public GameObject settingsInterface;
@@ -40,6 +41,11 @@ public class T6_UIManager : MonoBehaviour
         }
     }
 
+    public void HPPoints(int hpPoint)
+    {
+        healthTextPro.text = hpPoint + "%";
+    }
+
     public void RestartGameButton()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -51,14 +57,18 @@ public class T6_UIManager : MonoBehaviour
 
     public void UpdateScore(int score)
     {
-        score += 10;
-        scoreTextPro.text = "Score/n" + score;
+        scoreTextPro.text = "Score\n" + score;
+    }
+
+    public void UpdateSurge(int surge)
+    {
+        surgeTextPro.text = "Wave\n" + surge;
     }
 
     private void LoadScore()
     {
-        lastScoreTextP.text = "Last Score:\n" + PlayerPrefs.GetInt("Last_Score");
-        bestScoreTextP.text = "Best Score\n" + PlayerPrefs.GetInt("Best_Score");
+        lastScoreTextP.text = "Last Score:\n" + PlayerPrefs.GetInt("Last Score");
+        bestScoreTextP.text = "Best Score\n" + PlayerPrefs.GetInt("Best Score");
     }
 
     private void LoadScenes(int sceneNumber)

@@ -14,13 +14,26 @@ public class T6_LevelManager : MonoBehaviour
     public Transform enemyVoidObject;
     private GameObject enemyClone;
 
+    private T6_UIManager UI;
+
     private Vector2 respawnPosition;
 
     public Transform[] spawners;
 
+    private void Awake()
+    {
+        UI = GetComponent<T6_UIManager>();
+    }
+
     void Start()
     {
         StartCoroutine("SpawnEnemies");
+        UI.UpdateSurge(currentSurge);
+    }
+
+    void SendSurge()
+    {
+
     }
 
     IEnumerator  SpawnEnemies()
@@ -57,5 +70,6 @@ public class T6_LevelManager : MonoBehaviour
                 if (wavesUpgrade < 10)
                     wavesUpgrade++;
             }
+        UI.UpdateSurge(currentSurge);
     }
 }

@@ -6,6 +6,7 @@ public class T6_GameManager : MonoBehaviour
 {
     private int life;
     public int scorePoints;
+    public int hpPoints;
     public int wavesNum;
     public int healthPoints;
     public int lastScore;
@@ -32,13 +33,15 @@ public class T6_GameManager : MonoBehaviour
     public void RecibeDamage(int damage)
     {
         life -= damage;
+        UI.HPPoints(life);
     }
 
     public void UpgradeScore()
     {
+        scorePoints = scorePoints + 10;
         UI.UpdateScore(scorePoints);
     }
-
+    
     public void SaveTemporalScore()
     {
         lastScore = scorePoints;
