@@ -40,6 +40,7 @@ public class T6_ShotManager : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 anim.SetBool("isShooting", true);
+                // AudioSource.PlayClipAtPoint(damage, Camera.main.transform.position, 1);
                 switch (shotType)
                 {
                     case ShotType.Basic:
