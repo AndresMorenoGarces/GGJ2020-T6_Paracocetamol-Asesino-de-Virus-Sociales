@@ -1,25 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class T6_PlayerController : MonoBehaviour
 {
-    public int speed;
-
+    private int speed = 4;
     private T6_ShotManager shotChange;
-
     private Vector2 moveY;
     private int life = 100;
     private int damage;
 
+    bool upWall;
+    bool downWall;
     PlayerStats playerStats = PlayerStats.Iddle;
     Rigidbody2D rb2D;
     Animator anim;
-
-    void Awake()
-    {
-
-    }
 
     void Start()
     {
@@ -45,6 +38,29 @@ public class T6_PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (upWall)
+        {
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+            {
+                speed = 0;
+            }
+            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKey(KeyCode.S) || Input.GetKeyUp(KeyCode.W))
+            {
+                speed = 4;
+            }
+        }
+
+        if (downWall)
+        {
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+            {
+                speed = 0;
+            }
+            else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKey(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
+            {
+                speed = 4;
+            }
+        }
         rb2D.MovePosition(rb2D.position + moveY * Time.fixedDeltaTime);
     }
 
@@ -54,6 +70,29 @@ public class T6_PlayerController : MonoBehaviour
         {
             shotChange.ChangeShot();
         }
+    }
 
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.tag == "UpWall")
+        {
+            upWall = true;
+        }
+        else if (collision.tag == "DownWall")
+        {
+            downWall = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "UpWall")
+        {
+            upWall = false;
+        }
+        else if (collision.tag == "DownWall")
+        {
+            downWall = false;
+        }
     }
 }
