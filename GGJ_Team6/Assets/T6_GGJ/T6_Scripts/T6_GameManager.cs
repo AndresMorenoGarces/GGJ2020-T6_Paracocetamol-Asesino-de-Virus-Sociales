@@ -14,6 +14,8 @@ public class T6_GameManager : MonoBehaviour
     public int lastScore;
     public int bestScore;
 
+    public GameObject gameOver;
+
     private T6_UIManager UI;
 
     private void Awake()
@@ -29,7 +31,10 @@ public class T6_GameManager : MonoBehaviour
 
     void Update()
     {
-
+        if(life <= 0)
+        {
+            gameOver.SetActive(true);
+        }
     }
     
     public void RecibeDamage(int damage)
