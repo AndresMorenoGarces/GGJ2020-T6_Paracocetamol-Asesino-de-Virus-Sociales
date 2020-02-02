@@ -21,15 +21,6 @@ public class T6_UIManager : MonoBehaviour
         Time.timeScale = 1;
         LoadScenes(0);
     }
-    public void StartButton()
-    {
-        LoadScenes(1);
-    }
-
-    public void CreditsButton()
-    {
-        LoadScenes(2);
-    }
 
     public void PauseGame()
     {
