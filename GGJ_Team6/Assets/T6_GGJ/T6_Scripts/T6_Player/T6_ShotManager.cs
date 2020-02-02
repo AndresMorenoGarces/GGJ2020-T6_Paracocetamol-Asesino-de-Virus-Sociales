@@ -13,6 +13,8 @@ public class T6_ShotManager : MonoBehaviour
 
     private int shotCap = 0;
 
+    int countain;
+
     void Start()
     {
         typeOfShot = 0;
@@ -24,6 +26,12 @@ public class T6_ShotManager : MonoBehaviour
         {
             shotCap = 0;
             shotType = ShotType.Basic;
+        }
+
+        if (countain == 5)
+        {
+            countain = 0;
+
         }
 
         if (Time.time >= nextAttackTime)
@@ -74,6 +82,7 @@ public class T6_ShotManager : MonoBehaviour
     void ShotGranade()
     {
         Instantiate(ammo[(int)ShotType.Granade], transform.position, Quaternion.identity);
+        countain++;
     }
 
     public void ChangeShot()
