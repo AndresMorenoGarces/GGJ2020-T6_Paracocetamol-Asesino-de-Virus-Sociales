@@ -8,7 +8,7 @@ public class T6_UICredits : MonoBehaviour
     public void MainMenuButton()
     {
         Time.timeScale = 1;
-        LoadScenes(0);
+        LoadScenes(1);
     }
     private void LoadScenes(int sceneNumber)
     {

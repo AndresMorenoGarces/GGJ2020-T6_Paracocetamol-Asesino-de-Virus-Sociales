@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/T6_GGJ/T6_Scenes/T6_Introduction.unity
+    guid: 7e7b9f5ebcea64843b65bce3f1a13b3a
+  - enabled: 1
     path: Assets/T6_GGJ/T6_Scenes/T6_UIMain.unity
     guid: 5800a173b5b641046813d7aaba2f8a08
   - enabled: 1
@@ -14,7 +17,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/T6_GGJ/T6_Scenes/T6_Credits.unity
     guid: c613abe4dd91c94498b14f4498cc4a3a
-  - enabled: 1
-    path: Assets/T6_GGJ/T6_Scenes/T6_Introduction.unity
-    guid: 7e7b9f5ebcea64843b65bce3f1a13b3a
   m_configObjects: {}

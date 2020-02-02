@@ -7,12 +7,12 @@ public class T6_UIMenu : MonoBehaviour
 {
     public void StartButton()
     {
-        LoadScenes(1);
+        LoadScenes(2);
     }
 
     public void CreditsButton()
     {
-        LoadScenes(2);
+        LoadScenes(3);
     }
 
     private void LoadScenes(int sceneNumber)
