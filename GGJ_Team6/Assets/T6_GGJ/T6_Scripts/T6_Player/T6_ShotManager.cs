@@ -11,6 +11,7 @@ public class T6_ShotManager : MonoBehaviour
     private float attackRate = 2f;
     private float nextAttackTime = 0f;
 
+
     private int shotCap = 0;
 
     // Start is called before the first frame update
