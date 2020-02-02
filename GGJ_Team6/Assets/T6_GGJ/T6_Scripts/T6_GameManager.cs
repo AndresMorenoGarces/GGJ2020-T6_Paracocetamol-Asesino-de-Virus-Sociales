@@ -10,6 +10,7 @@ public class T6_GameManager : MonoBehaviour
     {
         life = 100;
     }
+
     void Start()
     {
 

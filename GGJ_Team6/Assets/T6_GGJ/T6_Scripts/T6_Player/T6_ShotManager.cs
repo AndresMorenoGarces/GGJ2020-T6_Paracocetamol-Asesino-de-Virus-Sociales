@@ -13,6 +13,7 @@ public class T6_ShotManager : MonoBehaviour
     private bool canShotGranade = true;
 
     private Animator anim;
+    private T6_PlayerController player;
 
     private int shotCap = 0;
 
@@ -21,6 +22,7 @@ public class T6_ShotManager : MonoBehaviour
     void Awake()
     {
         anim = GetComponent<Animator>();
+        player = GetComponent<T6_PlayerController>();
         typeOfShot = 0;
     }
 
@@ -41,9 +43,11 @@ public class T6_ShotManager : MonoBehaviour
                 {
                     case ShotType.Basic:
                         ShotBasic();
+                        player.activeShootPlace();
                         break;
                     case ShotType.Triple:
                         ShotTriple();
+                        player.activeShootPlace();
                         break;
                     default:
                         break;
@@ -53,6 +57,7 @@ public class T6_ShotManager : MonoBehaviour
             else
             {
                 anim.SetBool("isShooting", false);
+                player.disableShootPlace();
             }
             if (canShotGranade)
             {

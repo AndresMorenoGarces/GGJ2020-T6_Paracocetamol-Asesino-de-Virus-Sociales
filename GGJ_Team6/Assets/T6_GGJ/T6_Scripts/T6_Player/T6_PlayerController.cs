@@ -7,6 +7,7 @@ public class T6_PlayerController : MonoBehaviour
     private Vector2 moveY;
     private int life = 100;
     private int damage;
+    private GameObject shootPlace;
 
     bool upWall;
     bool downWall;
@@ -14,11 +15,17 @@ public class T6_PlayerController : MonoBehaviour
     Rigidbody2D rb2D;
     Animator anim;
 
-    void Start()
+    void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         shotChange = GetComponent<T6_ShotManager>();
+        shootPlace = transform.GetChild(1).gameObject;
+    }
+
+    private void Start()
+    {
+        //shootPlace.SetActive(false);
     }
 
     void Update()
@@ -62,6 +69,16 @@ public class T6_PlayerController : MonoBehaviour
             }
         }
         rb2D.MovePosition(rb2D.position + moveY * Time.fixedDeltaTime);
+    }
+
+    public void activeShootPlace()
+    {
+        shootPlace.SetActive(true);
+    }
+
+    public void disableShootPlace()
+    {
+        shootPlace.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
