@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1367088336}
   - component: {fileID: 1249844138770435244}
   m_Layer: 0
-  m_Name: TemporalEnemy 3
+  m_Name: T6_Choli
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3b43da5085bbeb84a94cdcdc92f0a091, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
