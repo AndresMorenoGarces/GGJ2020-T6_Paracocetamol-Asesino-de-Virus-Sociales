@@ -15,5 +15,9 @@ public class T6_ShotBasic : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if(collision.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }

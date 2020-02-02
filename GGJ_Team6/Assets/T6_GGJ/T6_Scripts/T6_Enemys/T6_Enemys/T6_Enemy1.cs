@@ -36,7 +36,7 @@ public class T6_Enemy1 : T6_EnemyBehavior
 
         if(collision.tag == "Projectile")
         {
-            TakeDamage(10);
+            TakeDamage(50);
         }
     }
 }

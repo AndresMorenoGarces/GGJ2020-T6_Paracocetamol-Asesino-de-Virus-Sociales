@@ -2,7 +2,7 @@
 
 public class T6_PlayerController : MonoBehaviour
 {
-    private int speed = 4;
+    private int speed = 6;
     private T6_ShotManager shotChange;
     private Vector2 moveY;
     private int life = 100;

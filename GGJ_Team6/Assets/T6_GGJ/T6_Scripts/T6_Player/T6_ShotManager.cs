@@ -8,15 +8,18 @@ public class T6_ShotManager : MonoBehaviour
 
     ShotType shotType = ShotType.Basic;
     private int typeOfShot;
-    private float attackRate = 2f;
+    private float attackRate = 4f;
     private float nextAttackTime = 0f;
+
+    private Animator anim;
 
     private int shotCap = 0;
 
     int countain;
 
-    void Start()
+    void Awake()
     {
+        anim = GetComponent<Animator>();
         typeOfShot = 0;
     }
 
@@ -38,6 +41,7 @@ public class T6_ShotManager : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
+                anim.SetBool("isShooting", true);
                 switch (shotType)
                 {
                     case ShotType.Basic:
@@ -51,12 +55,21 @@ public class T6_ShotManager : MonoBehaviour
                 }
                 AttackTime();
             }
+            else
+            {
+                anim.SetBool("isShooting", false);
+            }
 
             if (Input.GetButtonDown("Fire2"))
             {
+                anim.SetBool("granade", true);
                 shotType = ShotType.Granade;
                 ShotGranade();
                 AttackTime();
+            }
+            else
+            {
+                anim.SetBool("granade", false);
             }
         }
     }
