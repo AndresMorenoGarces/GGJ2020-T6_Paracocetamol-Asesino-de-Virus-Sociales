@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class T6_GameManager : MonoBehaviour
 {
+    public AudioClip soundGround;
+
     private int life;
     public int scorePoints;
     public int hpPoints;
@@ -22,7 +24,7 @@ public class T6_GameManager : MonoBehaviour
 
     void Start()
     {
-
+        T6_AudioManager.am.PlayMusic(soundGround);
     }
 
     void Update()

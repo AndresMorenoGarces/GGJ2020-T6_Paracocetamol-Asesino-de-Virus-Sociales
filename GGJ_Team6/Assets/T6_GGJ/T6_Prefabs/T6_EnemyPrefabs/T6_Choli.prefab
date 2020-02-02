@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gettingDamage: 0
+  enemySound1: {fileID: 8300000, guid: 7387e58a8852e274194a8fd4e1071c2e, type: 3}
 --- !u!95 &1249844138770435244
 Animator:
   serializedVersion: 3

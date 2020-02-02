@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explotionTime: 1.45
+  explosionAudio: {fileID: 8300000, guid: 28851978a4142614eb1ffb2aee637c86, type: 3}
 --- !u!95 &862836899
 Animator:
   serializedVersion: 3

@@ -5,6 +5,7 @@ using UnityEngine;
 public class T6_ShotGranada : MonoBehaviour
 {
     public float explotionTime;
+    public AudioClip explosionAudio;
 
     float thrust = 350f;
     Rigidbody2D rb2D;
@@ -34,9 +35,12 @@ public class T6_ShotGranada : MonoBehaviour
     IEnumerator Destroy()
     {
         yield return new WaitForSeconds(explotionTime);
+        T6_AudioManager.am.Play(explosionAudio);
+       // AudioSource.PlayClipAtPoint(explosionAudio, Camera.main.transform.position, 1);
         col2D.enabled = true;
         anim.SetTrigger("effect");
         Destroy(rb2D);
+        T6_AudioManager.am.Play(explosionAudio);
         yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
     }
