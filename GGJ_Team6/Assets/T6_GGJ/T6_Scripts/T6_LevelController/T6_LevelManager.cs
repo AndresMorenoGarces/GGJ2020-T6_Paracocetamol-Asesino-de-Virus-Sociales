@@ -5,7 +5,6 @@ using UnityEngine;
 public class T6_LevelManager : MonoBehaviour
 {
     private int enemiesSpawned;
-    private int randomEnemyQuantity;
     private int enemyType;
     private int currentSurge = 0;
     private int wavesUpgrade = 0;
@@ -16,45 +15,40 @@ public class T6_LevelManager : MonoBehaviour
     private GameObject enemyClone;
 
     private Vector2 respawnPosition;
-    private bool isRespawnTime = true;
 
-    private void RespawnEnemies()
+    public Transform[] spawners;
+
+    void Start()
     {
-        for (int i = 0; i < RespawnQuantity(); i++)
-        {
-            randomEnemyQuantity = Random.Range(-4, 5);
-            enemyClone = Instantiate(enemy[RespawnType()], RespawnPosition(), Quaternion.identity);
-            enemyClone.name = "Enemy Clone";
-            enemyClone.transform.SetParent(enemyVoidObject.transform);
-        }
-
-        Vector2 RespawnPosition()
-        {
-            respawnPosition.x = 10;
-
-            if (randomEnemyQuantity % 2 == 0)
-                respawnPosition.y = randomEnemyQuantity;
-            else
-                respawnPosition.y = randomEnemyQuantity - 1;
-            return respawnPosition;
-        }
-        int RespawnQuantity()
-        {
-            enemiesSpawned = Random.Range(1 + wavesUpgrade, 3 + wavesUpgrade);
-            return enemiesSpawned;
-        }
-        int RespawnType()
-        {
-            enemyType = Random.Range(0, 1 + enemyMaxUpgrade);
-            return enemyType;
-        }
-        isRespawnTime = false;
+        StartCoroutine("SpawnEnemies");
     }
 
+    IEnumerator  SpawnEnemies()
+    {
+        enemiesSpawned = Random.Range(1 + wavesUpgrade, 3 + wavesUpgrade);
+
+        for (int i = 0; i < enemiesSpawned; i++)
+        {
+            int tmpRnd = Random.Range(0, spawners.Length);
+            enemyClone = Instantiate(enemy[RespawnType()], spawners[tmpRnd].position, Quaternion.identity);
+            enemyClone.name = "Enemy Clone";
+            enemyClone.transform.SetParent(enemyVoidObject.transform);
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        yield return new WaitForSeconds(2f);
+        NewSurge();
+        StartCoroutine("SpawnEnemies");
+    }
+
+    int RespawnType()
+    {
+        enemyType = Random.Range(0, 1 + enemyMaxUpgrade);
+        return enemyType;
+    }
     private void NewSurge()
     {
-        if (enemyVoidObject.childCount == 0)
-        {
             currentSurge++;
             if (currentSurge % 5 == 0)
             {
@@ -63,14 +57,5 @@ public class T6_LevelManager : MonoBehaviour
                 if (wavesUpgrade < 10)
                     wavesUpgrade++;
             }
-            isRespawnTime = true;
-        }
-    }
-
-    void Update()
-    {
-        if (isRespawnTime)
-            RespawnEnemies();
-        NewSurge();
     }
 }
