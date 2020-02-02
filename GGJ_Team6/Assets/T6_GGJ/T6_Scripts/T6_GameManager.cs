@@ -5,9 +5,17 @@ using UnityEngine;
 public class T6_GameManager : MonoBehaviour
 {
     private int life;
+    public int scorePoints;
+    public int wavesNum;
+    public int healthPoints;
+    public int lastScore;
+    public int bestScore;
+
+    private T6_UIManager UI;
 
     private void Awake()
     {
+        UI = GetComponent<T6_UIManager>();
         life = 100;
     }
 
@@ -24,6 +32,27 @@ public class T6_GameManager : MonoBehaviour
     public void RecibeDamage(int damage)
     {
         life -= damage;
-        Debug.Log(life);
     }
+
+    public void UpgradeScore()
+    {
+        UI.UpdateScore(scorePoints);
+    }
+
+    public void SaveTemporalScore()
+    {
+        lastScore = scorePoints;
+        PlayerPrefs.SetInt("Last Score", lastScore);
+    }
+
+    public void SaveBestScore()
+    {
+        if (scorePoints > PlayerPrefs.GetInt("Best Score"))
+        {
+            bestScore = scorePoints;
+            PlayerPrefs.SetInt("Best Score", bestScore);
+        }
+    }
+
+    
 }

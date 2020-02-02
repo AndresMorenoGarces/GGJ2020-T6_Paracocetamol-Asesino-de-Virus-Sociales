@@ -6,7 +6,7 @@ public class T6_LevelManager : MonoBehaviour
 {
     private int enemiesSpawned;
     private int enemyType;
-    private int currentSurge = 0;
+    public int currentSurge = 0;
     private int wavesUpgrade = 0;
     private int enemyMaxUpgrade = 0;
 
@@ -34,10 +34,10 @@ public class T6_LevelManager : MonoBehaviour
             enemyClone.name = "Enemy Clone";
             enemyClone.transform.SetParent(enemyVoidObject.transform);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         NewSurge();
         StartCoroutine("SpawnEnemies");
     }

@@ -35,6 +35,9 @@ public class T6_EnemyBehavior : MonoBehaviour
         }
         else
         {
+            Manager.UpgradeScore();
+            Manager.SaveTemporalScore();
+            Manager.SaveBestScore();
             Die();
         }
     }
