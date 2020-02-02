@@ -10,12 +10,13 @@ public class T6_ShotManager : MonoBehaviour
     private int typeOfShot;
     private float attackRate = 4f;
     private float nextAttackTime = 0f;
+    private bool canShotGranade = true;
 
     private Animator anim;
 
     private int shotCap = 0;
 
-    int countain;
+    int countain = 0;
 
     void Awake()
     {
@@ -29,11 +30,6 @@ public class T6_ShotManager : MonoBehaviour
         {
             shotCap = 0;
             shotType = ShotType.Basic;
-        }
-
-        if (countain == 5)
-        {
-            countain = 0;                       
         }
 
         if (Time.time >= nextAttackTime)
@@ -58,17 +54,20 @@ public class T6_ShotManager : MonoBehaviour
             {
                 anim.SetBool("isShooting", false);
             }
-
-            if (Input.GetButtonDown("Fire2"))
+            if (canShotGranade)
             {
-                anim.SetBool("granade", true);
-                shotType = ShotType.Granade;
-                ShotGranade();
-                AttackTime();
-            }
-            else
-            {
-                anim.SetBool("granade", false);
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    anim.SetBool("granade", true);
+                    shotType = ShotType.Granade;
+                    ShotGranade();
+                    AttackTime();
+                    shotType = ShotType.Basic;
+                }
+                else
+                {
+                    anim.SetBool("granade", false);
+                }
             }
         }
     }
@@ -80,26 +79,39 @@ public class T6_ShotManager : MonoBehaviour
 
     void ShotBasic()
     {
-        Instantiate(ammo[(int)ShotType.Basic], transform.position, Quaternion.identity);
+        Instantiate(ammo[(int)ShotType.Basic], transform.position - new Vector3(0,0.7f,0), Quaternion.identity);
     }
 
     void ShotTriple()
     {
-        Instantiate(ammo[(int)ShotType.Triple], new Vector2(transform.position.x + 1f, transform.position.y), Quaternion.Euler(new Vector3(0, 0, 60f)));
-        Instantiate(ammo[(int)ShotType.Triple], new Vector2(transform.position.x + 1f, transform.position.y), Quaternion.identity);
-        Instantiate(ammo[(int)ShotType.Triple], new Vector2(transform.position.x + 1f, transform.position.y), Quaternion.Euler(new Vector3(0, 0, -60f)));
+        Instantiate(ammo[(int)ShotType.Triple], new Vector2(transform.position.x, transform.position.y) - new Vector2(0, 0.7f), Quaternion.Euler(new Vector3(0, 0, 21f)));
+        Instantiate(ammo[(int)ShotType.Triple], new Vector2(transform.position.x, transform.position.y) - new Vector2(0, 0.7f), Quaternion.identity);
+        Instantiate(ammo[(int)ShotType.Triple], new Vector2(transform.position.x, transform.position.y) - new Vector2(0, 0.7f), Quaternion.Euler(new Vector3(0, 0, -21f)));
         shotCap++;
     }
 
     void ShotGranade()
     {
-        Instantiate(ammo[(int)ShotType.Granade], transform.position, Quaternion.identity);
+        Instantiate(ammo[(int)ShotType.Granade], transform.position - new Vector3(-1.9f, 0.6f,0), Quaternion.identity);
         countain++;
+        if (countain == 5)
+        {
+            canShotGranade = false;
+            StartCoroutine(ReloadGranades());
+        }
     }
 
     public void ChangeShot()
     {
         shotType = ShotType.Triple;
+    }
+
+    IEnumerator ReloadGranades()
+    {
+        yield return new WaitForSeconds(10f);
+        canShotGranade = true;
+        countain = 0;
+        Debug.Log("Si sirvo");
     }
 }
 
