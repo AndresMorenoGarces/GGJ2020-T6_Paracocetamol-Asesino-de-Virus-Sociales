@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class IntroController : MonoBehaviour
 {
@@ -11,32 +11,26 @@ public class IntroController : MonoBehaviour
     void Start()
     {
         i = 0;
-        StartCoroutine(Changei());
-        StartCoroutine(ChangeScene());
+        StartCoroutine(ShowNextScene());
     }
 
-    void Update()
+    IEnumerator ShowNextScene()
     {
-        Intro[i].transform.Translate(Vector2.right * Time.deltaTime * 6);      
+        Intro[i].GetComponent<SpriteRenderer>().sortingOrder = 1;
+        yield return new WaitForSeconds(2f);
+        if (i < Intro.Length -1)
+        {
+            i++;
+            Intro[i - 1].GetComponent<SpriteRenderer>().sortingOrder = 0;
+            StartCoroutine(ShowNextScene());
+        }
+        else
+            StartCoroutine(ChangeScene());
     }
-
-    IEnumerator Changei()
-    {
-        Debug.Log(i);
-        //StartCoroutine(ChangeM());
-        yield return new WaitForSeconds(4);
-        i = 1;
-    }
-
-    //IEnumerator ChangeM()
-    //{
-    //    yield return new WaitForSeconds(4);
-    //    i = 2;
-    //}
-
+   
     IEnumerator ChangeScene()
     {
-        yield return new WaitForSeconds(9f);
-        SceneManager.LoadScene("T6_UIMain" , LoadSceneMode.Single);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(1);
     }
 }

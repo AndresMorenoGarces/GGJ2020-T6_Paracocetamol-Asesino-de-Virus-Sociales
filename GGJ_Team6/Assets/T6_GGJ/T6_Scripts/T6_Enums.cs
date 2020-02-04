@@ -5,12 +5,10 @@
     Attacks,
     TakeDamage
 }
-
 public enum PlayerStats
 {
     Shoot, Iddle, Die, isMoving
 }
-
 public enum ShotType
 {
     Basic = 0,

@@ -1,40 +1,21 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class T6_LevelManager : MonoBehaviour
 {
-    private int enemiesSpawned;
-    private int enemyType;
-    public int currentSurge = 0;
-    private int wavesUpgrade = 0;
-    private int enemyMaxUpgrade = 0;
-
     public GameObject[] enemy;
     public Transform enemyVoidObject;
-    private GameObject enemyClone;
-
-    private T6_UIManager UI;
-
-    private Vector2 respawnPosition;
-
     public Transform[] spawners;
 
-    private void Awake()
-    {
-        UI = GetComponent<T6_UIManager>();
-    }
+    private int currentSurge = 0;
+    private int enemiesSpawned;
+    private int enemyType;
+    private int wavesUpgrade = 0;
+    private int enemyMaxUpgrade = 0;
+    private GameObject enemyClone;
+    private Vector2 respawnPosition;
 
-    void Start()
-    {
-        StartCoroutine("SpawnEnemies");
-        UI.UpdateSurge(currentSurge);
-    }
-
-    void SendSurge()
-    {
-
-    }
+    private T6_UIManager UI;
 
     IEnumerator  SpawnEnemies()
     {
@@ -46,16 +27,14 @@ public class T6_LevelManager : MonoBehaviour
             enemyClone = Instantiate(enemy[RespawnType()], spawners[tmpRnd].position, Quaternion.identity);
             enemyClone.name = "Enemy Clone";
             enemyClone.transform.SetParent(enemyVoidObject.transform);
-
             yield return new WaitForSeconds(0.25f);
         }
-
         yield return new WaitForSeconds(5f);
         NewSurge();
         StartCoroutine("SpawnEnemies");
     }
 
-    int RespawnType()
+    private int RespawnType()
     {
         enemyType = Random.Range(0, 1 + enemyMaxUpgrade);
         return enemyType;
@@ -70,6 +49,17 @@ public class T6_LevelManager : MonoBehaviour
                 if (wavesUpgrade < 10)
                     wavesUpgrade++;
             }
+        UI.UpdateSurge(currentSurge);
+    }
+
+    private void Awake()
+    {
+        UI = GetComponent<T6_UIManager>();
+    }
+
+    void Start()
+    {
+        StartCoroutine("SpawnEnemies");
         UI.UpdateSurge(currentSurge);
     }
 }

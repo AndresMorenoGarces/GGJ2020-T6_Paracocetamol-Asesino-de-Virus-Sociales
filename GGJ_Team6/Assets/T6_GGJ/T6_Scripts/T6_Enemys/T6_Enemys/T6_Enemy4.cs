@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class T6_Enemy4 : T6_EnemyBehavior
 {
     public AudioClip enemySound4;
-    private EnemyState currState = EnemyState.Run;
 
     void Start()
     {
@@ -13,37 +10,13 @@ public class T6_Enemy4 : T6_EnemyBehavior
         GetManager();
         T6_AudioManager.am.Play(enemySound4);
     }
-
     void Update()
     {
-        switch (currState)
-        {
-            case EnemyState.Run:
-                EnemyMove(1f);
-                break;
-            case EnemyState.Die:
-                Die();
-                break;
-            default:
-                break;
-        }
+        EnemyCurrentState(1f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Goal")
-        {
-            MakeDamage(10);
-        }
-
-        if (collision.tag == "Projectile")
-        {
-            TakeDamage(20);
-        }
-
-        if (collision.tag == "Expansion")
-        {
-            TakeDamage(50);
-        }
+        EnemyTakeDamage(10, 20, 50, collision);
     }
 }

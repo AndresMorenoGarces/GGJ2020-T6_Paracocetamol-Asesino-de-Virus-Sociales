@@ -1,22 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class T6_UIMenu : MonoBehaviour
 {
+    private void LoadScenes(int sceneNumber)
+    {
+        SceneManager.LoadScene(sceneNumber);
+    }
+
     public void StartButton()
     {
         LoadScenes(2);
     }
-
     public void CreditsButton()
     {
         LoadScenes(3);
     }
 
-    private void LoadScenes(int sceneNumber)
+    private void Awake()
     {
-        SceneManager.LoadScene(sceneNumber);
+        Time.timeScale = 1;
     }
 }

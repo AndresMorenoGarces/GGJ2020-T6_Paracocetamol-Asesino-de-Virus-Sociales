@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/T6_GGJ/T6_Scenes/T6_Credits.unity
     guid: c613abe4dd91c94498b14f4498cc4a3a
+  - enabled: 1
+    path: Assets/T6_GGJ/T6_Scenes/T6_LoseScene.unity
+    guid: cc1df8786edf1a14faac5fa5666859a7
   m_configObjects: {}

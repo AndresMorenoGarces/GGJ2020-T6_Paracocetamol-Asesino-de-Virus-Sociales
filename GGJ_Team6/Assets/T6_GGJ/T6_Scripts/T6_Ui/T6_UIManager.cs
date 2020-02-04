@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -19,9 +16,8 @@ public class T6_UIManager : MonoBehaviour
     public void MainMenuButton()
     {
         Time.timeScale = 1;
-        LoadScenes(0);
+        SceneManager.LoadScene(1);
     }
-
     public void PauseGame()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -31,50 +27,36 @@ public class T6_UIManager : MonoBehaviour
             settingsInterface.SetActive(active);
         }
     }
-
-    public void HPPoints(int hpPoint)
+    public void ExitButton()
     {
-        healthTextPro.text = hpPoint + "%";
+        Application.Quit();
     }
-
-    public void RestartGameButton()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Time.timeScale = 1;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
+    
 
     public void UpdateScore(int score)
     {
         scoreTextPro.text = "Score\n" + score;
     }
-
     public void UpdateSurge(int surge)
     {
         surgeTextPro.text = "Wave\n" + surge;
     }
-
+    public void HPPoints(int hpPoint)
+    {
+        healthTextPro.text = hpPoint + "%";
+    }
     private void LoadScore()
     {
         lastScoreTextP.text = "Last Score:\n" + PlayerPrefs.GetInt("Last Score");
         bestScoreTextP.text = "Best Score\n" + PlayerPrefs.GetInt("Best Score");
     }
 
-    private void LoadScenes(int sceneNumber)
-    {
-        SceneManager.LoadScene(sceneNumber);
-    }
-
     private void Start()
     {
         LoadScore();
-
     }
     private void Update()
     {
         PauseGame();
-        RestartGameButton();
     }
 }
